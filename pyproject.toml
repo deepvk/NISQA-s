@@ -1,0 +1,29 @@
+[metadata]
+name = "py_template"
+author = "deepvk"
+url = "https://github.com/deepvk/py_template"
+
+[tool.isort]
+profile = "black"
+line_length = 120
+
+[tool.black]
+line-length = 120
+
+[tool.mypy]
+files = ["src"]
+install_types = "True"
+non_interactive = "True"
+disallow_untyped_defs = "True"
+ignore_missing_imports = "True"
+show_error_codes = "True"
+warn_redundant_casts = "True"
+warn_unused_configs = "True"
+warn_unused_ignores = "True"
+allow_redefinition = "True"
+warn_no_return = "False"
+no_implicit_optional = "False"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["--color=yes", "-s"]
