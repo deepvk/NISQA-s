@@ -1,5 +1,5 @@
 import os.path
-import queue
+from queue import Queue
 
 import numpy as np
 import sounddevice as sd
@@ -11,7 +11,7 @@ from src.core.model_torch import model_init
 from src.utils.process_utils import process
 from src.utils.train_utils import yamlparser
 
-q = queue.Queue()
+q: Queue = Queue()
 
 
 def callback(indata, frames, time, status):
