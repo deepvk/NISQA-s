@@ -1,7 +1,7 @@
 [metadata]
-name = "py_template"
+name = "NISQA-S"
 author = "deepvk"
-url = "https://github.com/deepvk/py_template"
+url = "https://github.com/deepvk/nisqa-s"
 
 [tool.isort]
 profile = "black"

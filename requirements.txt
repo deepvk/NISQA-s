@@ -1,0 +1,11 @@
+loguru==0.7.2
+matplotlib==3.8.0
+numpy==1.25.2
+pandas==2.2.0
+PyYAML==6.0.1
+scipy==1.12.0
+sounddevice==0.4.6
+soundfile==0.12.1
+torch==2.1.2
+torchaudio==2.1.2
+tqdm==4.66.1
