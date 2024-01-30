@@ -30,7 +30,7 @@ This will log inference results to terminal, so pay attention to it.
 
 ## Config options
 
-Default config is `nisqa_s/config/nisqa_s.yaml`. All configurations for everything related to training and inference are happening here. 
+Default config is `config/nisqa_s.yaml`. All configurations for everything related to training and inference are happening here. 
 There are detailed comments about each parameter, so we'll cover only the most important ones for inference:
 
 * `ckp`: path to trained checkpoint (`weights/nisqa_s.tar` by default)
@@ -43,12 +43,12 @@ If you plan to run online inference, you should pay close attention to last 4 ar
 
 * `updates` will make the model spit metrics more often (check argument description)
 
-* `sd_device` ID should be provided if you want to run this on different input devices (e.g. built-in mic and sound-card mic).
+* `sd_device`'s ID should be provided if you want to run this on different input devices (e.g. sound-card mic).
 First run of `run_infer_mic.py` will show you those IDs.
 
 * `sd_dump` lets you save mic input to check the results in offline later.
 
-And finally, you can run custom config for your experiments - just add `--yaml` argument to `python run_infer_file.py`/`python run_infer_mic.py` and provide path to yor own config:
+And finally, you can run custom config for your experiments - just add `--yaml` argument to `python -m scripts.run_infer_file`/`python -m scripts.run_infer_mic` and provide path to yor own config:
 ```
 python -m scripts.run_infer_file --yaml path/to/custom/config.yaml
 ```

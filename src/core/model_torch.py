@@ -36,17 +36,17 @@ class AdaptCNN(nn.Module):
     """
 
     def __init__(
-            self,
-            input_channels,
-            c_out_1,
-            c_out_2,
-            c_out_3,
-            kernel_size,
-            dropout,
-            pool_1,
-            pool_2,
-            pool_3,
-            fc_out_h=20,
+        self,
+        input_channels,
+        c_out_1,
+        c_out_2,
+        c_out_3,
+        kernel_size,
+        dropout,
+        pool_1,
+        pool_2,
+        pool_3,
+        fc_out_h=20,
     ):
         super().__init__()
         self.name = "CNN_adapt"
@@ -170,20 +170,20 @@ class NISQA_DIM(nn.Module):
     """
 
     def __init__(
-            self,
-            cnn_c_out_1=16,
-            cnn_c_out_2=32,
-            cnn_c_out_3=64,
-            cnn_kernel_size=3,
-            cnn_dropout=0.2,
-            cnn_pool_1=[24, 7],
-            cnn_pool_2=[12, 5],
-            cnn_pool_3=[6, 3],
-            cnn_fc_out_h=None,
-            td_lstm_h=128,
-            td_lstm_num_layers=1,
-            td_lstm_dropout=0,
-            td_lstm_bidirectional=True,
+        self,
+        cnn_c_out_1=16,
+        cnn_c_out_2=32,
+        cnn_c_out_3=64,
+        cnn_kernel_size=3,
+        cnn_dropout=0.2,
+        cnn_pool_1=[24, 7],
+        cnn_pool_2=[12, 5],
+        cnn_pool_3=[6, 3],
+        cnn_fc_out_h=None,
+        td_lstm_h=128,
+        td_lstm_num_layers=1,
+        td_lstm_dropout=0,
+        td_lstm_bidirectional=True,
     ):
         super().__init__()
 
