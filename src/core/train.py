@@ -41,7 +41,9 @@ def train_dim(args):
 
     # Optimizer  -------------------------------------------------------------
     opt = optim.Adam(model.parameters(), lr=args["tr_lr"])
-    scheduler = optim.lr_scheduler.ReduceLROnPlateau(opt, "min", verbose=True, threshold=0.003, patience=args["tr_lr_patience"])
+    scheduler = optim.lr_scheduler.ReduceLROnPlateau(
+        opt, "min", verbose=True, threshold=0.003, patience=args["tr_lr_patience"]
+    )
     early_stop = EarlyStopperDim(args["tr_early_stop"])
 
     biasLosses = []
@@ -94,8 +96,12 @@ def train_dim(args):
             )
 
         directions = 2 if args["td_lstm_bidirectional"] else 1
-        h0 = torch.zeros(args["td_lstm_num_layers"] * directions * torch.cuda.device_count(), args["tr_bs"], args["td_lstm_h"])
-        c0 = torch.zeros(args["td_lstm_num_layers"] * directions * torch.cuda.device_count(), args["tr_bs"], args["td_lstm_h"])
+        h0 = torch.zeros(
+            args["td_lstm_num_layers"] * directions * torch.cuda.device_count(), args["tr_bs"], args["td_lstm_h"]
+        )
+        c0 = torch.zeros(
+            args["td_lstm_num_layers"] * directions * torch.cuda.device_count(), args["tr_bs"], args["td_lstm_h"]
+        )
         for xb_spec, yb_mos, (idx, n_wins) in dl_train:
             # Estimate batch ---------------------------------------------------
             xb_spec = xb_spec.to(dev)
@@ -294,7 +300,7 @@ def train_dim(args):
 
         # Scheduler update    ---------------------------------------------
         scheduler.step(loss)
-        earl_stp = early_stop.step(r)
+        early_stop = early_stop.step(r)
 
         # Print    --------------------------------------------------------
         ep_runtime = time.time() - tic_epoch
@@ -335,12 +341,16 @@ def train_dim(args):
         )
 
         # Early stopping    -----------------------------------------------
-        if earl_stp:
+        if earl_stop:
             logger.info(
-                "--> Early stopping. best_r_p {:0.2f} best_rmse {:0.2f}".format(early_stop.best_r_p, early_stop.best_rmse)
+                "--> Early stopping. best_r_p {:0.2f} best_rmse {:0.2f}".format(
+                    early_stop.best_r_p, early_stop.best_rmse
+                )
             )
             return
 
             # Training done --------------------------------------------------------
-    logger.info("--> Training done. best_r_p {:0.2f} best_rmse {:0.2f}".format(early_stop.best_r_p, early_stop.best_rmse))
+    logger.info("--> Training done. best_r_p {:0.2f} best_rmse {:0.2f}".format(
+        early_stop.best_r_p, early_stop.best_rmse)
+    )
     return

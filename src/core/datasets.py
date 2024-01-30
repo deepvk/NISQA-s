@@ -73,7 +73,7 @@ class SpeechQualityDataset(Dataset):
             n_bufs = int(len(idx) / buffer_size)
             idx = (
                 idx[: buffer_size * n_bufs].reshape(-1, buffer_size).tolist()
-                + idx[buffer_size * n_bufs:].reshape(1, -1).tolist()
+                + idx[buffer_size * n_bufs :].reshape(1, -1).tolist()
             )
             with multiprocessing.Pool(self.to_memory_workers) as pool:
                 mem_list = []
