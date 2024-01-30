@@ -341,7 +341,7 @@ def train_dim(args):
         )
 
         # Early stopping    -----------------------------------------------
-        if earl_stop:
+        if early_stop:
             logger.info(
                 "--> Early stopping. best_r_p {:0.2f} best_rmse {:0.2f}".format(
                     early_stop.best_r_p, early_stop.best_rmse
@@ -350,7 +350,7 @@ def train_dim(args):
             return
 
             # Training done --------------------------------------------------------
-    logger.info("--> Training done. best_r_p {:0.2f} best_rmse {:0.2f}".format(
-        early_stop.best_r_p, early_stop.best_rmse)
+    logger.info(
+        "--> Training done. best_r_p {:0.2f} best_rmse {:0.2f}".format(early_stop.best_r_p, early_stop.best_rmse)
     )
     return
