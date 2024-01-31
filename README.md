@@ -87,11 +87,11 @@ Note that provided checkpoint is trained with provided config.
 # Citations
 ```
 @article{Mittag_Naderi_Chehadi_Möller_2021, 
-title={Nisqa: A deep CNN-self-attention model for multidimensional speech quality prediction with crowdsourced datasets}, 
-DOI={10.21437/interspeech.2021-299}, 
-journal={Interspeech 2021}, 
-author={Mittag, Gabriel and Naderi, Babak and Chehadi, Assmaa and Möller, Sebastian}, 
-year={2021}
+  title={Nisqa: A deep CNN-self-attention model for multidimensional speech quality prediction with crowdsourced datasets}, 
+  DOI={10.21437/interspeech.2021-299}, 
+  journal={Interspeech 2021}, 
+  author={Mittag, Gabriel and Naderi, Babak and Chehadi, Assmaa and Möller, Sebastian}, 
+  year={2021}
 } 
 ```
 ```
@@ -102,6 +102,7 @@ year={2021}
   publisher = {GitHub},
   journal = {GitHub repository},
   howpublished = {https://github.com/deepvk/nisqa-s}
+}
 ```
 
 
