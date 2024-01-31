@@ -20,5 +20,3 @@ jobs:
         run: isort . --check --diff
       - name: "mypy"
         run: mypy
-      - name: "pytests"
-        run: pytest

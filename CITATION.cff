@@ -1,0 +1,26 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: NISQA-s
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Ivan
+    family-names: Beskrovnyi
+    email: i.beskrovnyy@vk.team
+    affiliation: 'deepvk, VK'
+identifiers:
+  - type: url
+    value: 'https://github.com/deepvk/nisqa-s'
+    description: Repository
+repository-code: 'https://github.com/deepvk/nisqa-s'
+abstract: >-
+  Code of modified NISQA-s metric and the weights of the
+  trained metric.
+keywords:
+  - speech quality
+  - metric
+license: Apache-2.0

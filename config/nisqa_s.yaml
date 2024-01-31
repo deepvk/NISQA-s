@@ -1,0 +1,86 @@
+# Runname and paths
+name: nisqa_s_np # name of current training run
+data_dir: /data/Data/NISQA_Corpus # main input dir with dataset samples and csv files
+output_dir: ./weights # output dir, a new subfolder for current run will be created with yaml, results csv, and stored model weights
+pretrained_model: false
+
+# Dataset options
+csv_file: NISQA_corpus_file.csv # csv-file with MOS labels and filepaths of all datasets, must be placed in 'data_dir', must contain columns 'mos', 'noi', 'dis', 'col', 'loud' with overall and dimension quality ratings
+csv_con: null # csv-file with per-condition MOS used for evaluation (optional)
+csv_deg: filepath_deg # csv column name of filepath to degraded speech sample, path must be relative to 'data_dir'
+csv_ref: filepath_ref # csv column name of filepath to reference speech sample, path must be relative to 'data_dir'
+csv_mos_train: mos # csv column name of target training value (usually MOS)
+csv_mos_val: mos # csv column name of target validation value (usually MOS)
+csv_db_train: # dataset names of training sets, the dataset names must be in 'db' column of csv file
+    - NISQA_TRAIN_SIM
+    - NISQA_TRAIN_LIVE
+csv_db_val: # dataset names of validation sets, the dataset names must be in 'db' column of csv file
+    - NISQA_VAL_SIM
+    - NISQA_VAL_LIVE
+
+# Training options
+tr_epochs: 500 # number of max training epochs
+tr_early_stop: 20 # stop training if neither validation RMSE nor correlation 'r_p' does improve for 'tr_early_stop' epochs
+tr_bs: 120 # training dataset mini-batch size (should be increased to 100-200 if enough GPU memory available)
+tr_bs_val: 120 # validation dataset mini-batch size (should be increased to 100-200 if enough GPU memory available)
+tr_lr: 0.001 # learning rate of ADAM optimiser
+tr_lr_patience: 15  # learning rate patience, decrease learning rate if loss does not improve for 'tr_lr_patience' epochs
+tr_num_workers: 4 # number of workers to be used by PyTorch Dataloader (may cause problems on Windows machines -> set to 0)
+tr_parallel: True # use PyTorch DataParallel for training on multiple GPUs
+tr_ds_to_memory: False # load dataset in CPU RAM before starting training (increases speed on some systems, 'tr_num_workers' should be set to 0 or 1)
+tr_ds_to_memory_workers: 0 # number of workers used for loading data into CPU RAM (experimental)
+tr_device: null # train on 'cpu' or 'cuda', if null 'cuda' is used if available.
+tr_checkpoint: best_only # 'every_epoch' stores model weights at each training epoch | 'best_only' stores only the weights with best validation correlation | 'null' only stores results but no model weights
+tr_verbose: 2 # '0' only basic results after each epoch | '1' more detailed results and bias loss information | '2' adds progression bar
+
+# Bias loss options (optional)
+tr_bias_mapping: null # set to 'first_order' if bias loss should be applied, otherwise 'null'
+tr_bias_min_r: null # minimum correlation threshold to be reached before estimating bias (e.g. 0.7), set to 'null' if no bias loss should be applied
+tr_bias_anchor_db: null # name of anchor dataset (optional)
+
+# Mel-Specs options
+ms_sr: null # resample speech signal to 'ms_sr'
+ms_fmax: 20000 # maximum considered Mel-band frequency (in Hz), set to 20k for fullband speech samples
+ms_n_fft: 960 # fft size
+ms_hop_length: 480 # hop length of fft windowing
+ms_win_length: 960 # fft window length, will be padded with zeros to match 'ms_n_fft'
+ms_n_mels: 48 # number of Mel bands
+ms_seg_length: 15 # width of extracted Mel-spec segments (in bins)
+ms_seg_hop_length: 3 # hop length of segments (in bins), decreasing this may improve performance but increases memory usage and runtime.
+ms_channel: null # audio channel in case of stereo file (0->left, 1->right). if null, mono mix is used
+ms_max_length: 1300 # spec length for training only (in bins). if samples of different duration are used in dataloader they will be padded. one segment corresponds to 40ms -> 0.04*1300=52sec max sample duration. change if you want to train on different samples
+
+
+# CNN parameters
+cnn_c_out_1: 16 # number of output channels of first convolutional layer
+cnn_c_out_2: 32 # number of output channels of the second convolutional layer
+cnn_c_out_3: 64 # number of output channels of the last four convolutional layer
+cnn_kernel_size: !!python/tuple [3,3]
+cnn_dropout: 0.2
+cnn_fc_out_h: null # length of the CNN output feature vector, if 'null' the last fully connected layer is omitted
+cnn_pool_1: [24,7] # output dimensions of first adaptive pooling ('adaptive' CNN only)
+cnn_pool_2: [12,5] # output dimensions of second adaptive pooling ('adaptive' CNN only)
+cnn_pool_3: [6,3] # output dimensions of third adaptive pooling ('adaptive' CNN only)
+
+# LSTM parameters
+td_lstm_h: 128 # number of LSTM hidden units
+td_lstm_num_layers: 1 # LSTM depth
+td_lstm_dropout: 0 
+td_lstm_bidirectional: true  # use bidirectional LSTM -> hidden units x 2
+
+# Arguments for inference
+ckp: src/weights/nisqa_s.tar # checkpoint that will be used for inference
+sample: src/sample/gt.wav # path to file to run on
+inf_device: cpu # device for inference runs
+warmup: False # warmup run before inference; usually is not needed on CPU runs
+
+#Microphone inference specifics
+frame: 2 # framesize for file/mic capture in seconds
+updates: null  # if null, metrics will be calculated over whole available frame (every [frame] seconds); if int - metrics will be calculated every n bins (which equivalent to sr / ms_n_fft * n seconds, for updates=1 it will be 48000/960*1 = 20ms)
+sd_device: null # check mic device ID in sounddevice or leave null to use default input device (most probably your system default mic)
+sd_dump: null # set this to filename if you want to dump mic signal into file
+
+
+
+
+
