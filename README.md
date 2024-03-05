@@ -48,7 +48,7 @@ First run of `run_infer_mic.py` will show you those IDs.
 
 * `sd_dump` lets you save mic input to check the results in offline later.
 
-And finally, you can run custom config for your experiments - just add `--yaml` argument to `python -m scripts.run_infer_file`/`python -m scripts.run_infer_mic` and provide path to yor own config:
+And finally, you can run custom config for your experiments - just add `--yaml` argument to `python -m scripts.run_infer_file`/`python -m scripts.run_infer_mic` and provide path to your own config:
 ```
 python -m scripts.run_infer_file --yaml path/to/custom/config.yaml
 ```
