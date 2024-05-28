@@ -36,7 +36,6 @@ if __name__ == "__main__":
     print("NOI    COL   DISC  LOUD  MOS")
     np.set_printoptions(precision=3)
     for audio in audio_spl:
-        print(audio.shape)
         out, h0, c0 = process(audio, sr, model, h0, c0, args)
         out_all.append(out[0].numpy())
 
