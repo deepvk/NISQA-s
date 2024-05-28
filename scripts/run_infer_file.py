@@ -20,7 +20,13 @@ if __name__ == "__main__":
     # split input file into frames
     audio, sr = sf.read(args["sample"])
     framesize = sr * args["frame"]
-    audio_spl = torch.split(torch.as_tensor(audio), framesize, dim=0)
+    audio = torch.as_tensor(audio)
+
+    # if length of audio is not divisible by framesize, then pad
+    if audio.shape[0] % framesize != 0:
+        audio = torch.cat((audio, torch.zeros(framesize - audio.shape[0] % framesize)))
+
+    audio_spl = torch.split(audio, framesize, dim=0)
 
     # if warmup is needed
     if args["warmup"]:
@@ -30,6 +36,7 @@ if __name__ == "__main__":
     print("NOI    COL   DISC  LOUD  MOS")
     np.set_printoptions(precision=3)
     for audio in audio_spl:
+        print(audio.shape)
         out, h0, c0 = process(audio, sr, model, h0, c0, args)
         out_all.append(out[0].numpy())
 
