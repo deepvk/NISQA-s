@@ -76,7 +76,7 @@ warmup: False # warmup run before inference; usually is not needed on CPU runs
 
 #Microphone inference specifics
 frame: 2 # framesize for file/mic capture in seconds
-updates: null  # if null, metrics will be calculated over whole available frame (every [frame] seconds); if int - metrics will be calculated every n bins (which equivalent to sr / ms_n_fft * n seconds, for updates=1 it will be 48000/960*1 = 20ms)
+updates: null  # if null, metrics will be calculated over whole available frame (every [frame] seconds); if int - metrics will be calculated every n bins (which equivalent to ms_n_fft / sr * n seconds, for updates=1, n_fft=960 and sr=48000 it will be 960/48000*1 = 20ms)
 sd_device: null # check mic device ID in sounddevice or leave null to use default input device (most probably your system default mic)
 sd_dump: null # set this to filename if you want to dump mic signal into file
 
