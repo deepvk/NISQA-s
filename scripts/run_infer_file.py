@@ -33,7 +33,7 @@ if __name__ == "__main__":
         _, _, _ = process(torch.zeros((1, framesize)), sr, model, h0, c0, args)
 
     out_all = []
-    print("NOI    COL   DISC  LOUD  MOS")
+    print("MOS    NOI   DISC  COL  LOUD")
     np.set_printoptions(precision=3)
     for audio in audio_spl:
         out, h0, c0 = process(audio, sr, model, h0, c0, args)
