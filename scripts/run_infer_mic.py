@@ -66,7 +66,7 @@ if __name__ == "__main__":
                     callback=callback,
                 ):
                     print("Listening... Press CTRL+C to stop.")
-                    print("NOI    COL   DISC  LOUD  MOS")
+                    print("MOS    NOI   DISC  COL  LOUD")
                     while True:
                         file.write(q.get())
         except KeyboardInterrupt:
@@ -84,7 +84,7 @@ if __name__ == "__main__":
                 callback=callback,
             ):
                 print("Listening... Press CTRL+C to stop.")
-                print("NOI    COL   DISC  LOUD  MOS")
+                print("MOS    NOI   DISC  COL  LOUD")
                 while True:
                     q.get()
         except KeyboardInterrupt:
