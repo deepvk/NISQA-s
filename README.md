@@ -17,6 +17,8 @@ Note that there may be some problems with `torch` installation. If so, follow of
 
 ## Quick start
 
+Please note that provided checkpoint trained for 48 kHz files. Upsample your files if yours has lower samplerate.
+
 If you want to just run this repo with provided config and samples - 
 ```
 python -m scripts.run_infer_file
