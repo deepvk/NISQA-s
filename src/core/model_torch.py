@@ -313,7 +313,7 @@ def model_init(args):
         cnn_fc_out_h=args["cnn_fc_out_h"],
         td_lstm_h=args["td_lstm_h"],
         td_lstm_num_layers=args["td_lstm_num_layers"],
-        td_lstm_dropout=args["td_lstm_num_layers"],
+        td_lstm_dropout=args["td_lstm_dropout"],
         td_lstm_bidirectional=args["td_lstm_bidirectional"],
     )
 
